@@ -1,7 +1,7 @@
 # Scaffold Template
 
 ## This is our boilerplate code for all apps we produce.
-
+### *** Please clone this repository and do not directly make changes to it ***
 ### It helps speed up development time and allow us to spend time focusing on the custom business logic.
 
 <hr>
