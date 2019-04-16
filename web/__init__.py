@@ -5,6 +5,7 @@ from flask_login import LoginManager, current_user, login_required
 from flask_wtf.csrf import CSRFProtect
 from .util.assets import bundles
 from web.blueprints.users.views import users_blueprint
+from web.blueprints.sessions.views import sessions_blueprint
 from models.user import User
 
 # Assets
