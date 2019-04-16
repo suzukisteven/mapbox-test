@@ -33,8 +33,35 @@ DATABASE_URL="postgres://localhost:5432/postgres_server_name" # Change to your D
 <hr>
 
 ## pip install -r requirements.txt
-This installs all commonly used Flask dependencies such as peewee, peeweedb-evolve, psycopg2-binary, Flask, Jinja2, Flask-login etc. </br></br> For a complete list of all packages installed check the requirements.txt file.
+This installs all commonly used Flask dependencies:
 
+```PYTHON
+boto3==1.9.130
+botocore==1.12.130
+certifi==2019.3.9
+Click==7.0
+colorama==0.4.1
+docutils==0.14
+Flask==1.0.2
+Flask-Assets==0.12
+Flask-Login==0.4.1
+Flask-WTF==0.14.2
+itsdangerous==1.1.0
+Jinja2==2.10
+jmespath==0.9.4
+MarkupSafe==1.1.1
+peewee==3.9.3
+peewee-db-evolve==3.7.0
+psycopg2-binary==2.7.7
+python-dateutil==2.8.0
+python-dotenv==0.10.1
+s3transfer==0.2.0
+six==1.12.0
+urllib3==1.24.1
+webassets==0.12.1
+Werkzeug==0.15.1
+WTForms==2.2.1
+```
 
 <br>
 <hr>
