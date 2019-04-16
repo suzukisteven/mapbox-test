@@ -33,7 +33,7 @@ DATABASE_URL="postgres://localhost:5432/postgres_server_name" # Change to your D
 <hr>
 
 ## pip install -r requirements.txt
-This installs all commonly used Flask dependencies:
+This installs all commonly used packages and dependencies:
 
 ```PYTHON
 boto3==1.9.130
