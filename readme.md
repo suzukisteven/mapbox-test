@@ -91,7 +91,7 @@ createdb project_name_dev
 
 ## Create a virtual environment (always be in your virtualenv):
 
-In terminal:
+In Terminal:
 ```PYTHON
 conda create -n project_name python=3.7
 conda activate project_name
