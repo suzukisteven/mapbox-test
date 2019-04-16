@@ -26,7 +26,8 @@ login_manager.login_message_category = "danger"
 
 # Registering Blueprints
 app.register_blueprint(users_blueprint, url_prefix="/users")
-# app.register_blueprint(sessions_blueprint, url_prefix="/sessions")
+app.register_blueprint(sessions_blueprint, url_prefix="/sessions")
+# app.register_blueprint(something_blueprint, url_prefix="/something")
 
 # Error Routes
 @app.errorhandler(404)
