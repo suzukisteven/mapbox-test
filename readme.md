@@ -32,7 +32,11 @@ DATABASE_URL="postgres://localhost:5432/postgres_server_name" # Change to your D
 <br>
 <hr>
 
-## pip install -r requirements.txt
+## Install standard packages and dependencies
+
+```PYTHON
+pip install -r requirements.txt
+```
 This installs all commonly used packages and dependencies:
 
 ```PYTHON
