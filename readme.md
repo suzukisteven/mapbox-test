@@ -17,3 +17,5 @@ pip install -r requirements.txt
 
 4. Add your mapbox api key to .env file
 5. Change DATABASE_URL to match your database name in your .env file
+
+### Refer to __init__.py (controller), and map.html (template)
