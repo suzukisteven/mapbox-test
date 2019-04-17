@@ -1,3 +1,6 @@
+# How 2 use dis
+<hr>
+
 1. Create a table in your DB such as Trip (and the model), where the columns (attributes) should include: latitude(decimalfield), longitude(decimalfield), address(charfield) and youll need user_id(foreignkeyfield) eventually.
 
 2. Make environment 
