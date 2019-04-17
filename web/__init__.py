@@ -10,6 +10,7 @@ from models.user import User
 from models.trip import Trip
 import re
 import os, time
+import textwrap
 
 from geojson import Point, Feature, FeatureCollection
 from mapbox import Geocoder, Maps
@@ -84,9 +85,10 @@ def map(query):
     first = response.geojson()['features'][0]
     latitude = response.geojson()['features'][0]['center'][0]
     longitude = response.geojson()['features'][0]['center'][1]
+    truncated_address = textwrap.shorten(first['place_name'], width=60, placeholder="...")
     trips = Trip.select().order_by(Trip.created_at.desc())
 
-    return render_template('map.html', response=response, latitude=latitude, longitude=longitude, first=first, trips=trips)
+    return render_template('map.html', truncated_address=truncated_address, response=response, latitude=latitude, longitude=longitude, first=first, trips=trips)
 
 @app.route('/save_location/<query>', methods=['POST'])
 def save_location(query):
