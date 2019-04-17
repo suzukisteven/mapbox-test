@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset='utf-8' />
-    <title>Display buildings in 3D</title>
+    <title>Map</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.js'></script>
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.css' rel='stylesheet' />
@@ -42,103 +42,104 @@
 
 </div>
 {% if latitude and longitude %}
-<script>
-    mapboxgl.accessToken = 'pk.eyJ1Ijoic3V6dWtpc3RldmVuIiwiYSI6ImNqdWpwcDhhYzFuczE0ZXAzamNkMWpvd2sifQ.PAW2yuz30KwTEL983iIN_g';
-    var coordinates = document.getElementById('coordinates');
-    var map = new mapboxgl.Map({
-    container: 'map', // container id
-    style: 'mapbox://styles/mapbox/streets-v11', // stylesheet location
-    center: [{{ latitude }}, {{ longitude }}], // starting position [lng, lat]
-    zoom: 17.5 // starting zoom
-    });
-
-    var marker = new mapboxgl.Marker({
-        draggable: true
-    })
-        .setLngLat([{{ latitude }}, {{ longitude }}])
-        .addTo(map);
-    
-    function onDragEnd() {
-        var lngLat = marker.getLngLat();
-        coordinates.style.display = 'block';
-        coordinates.innerHTML = 'Longitude: ' + lngLat.lng + '<br />Latitude: ' + lngLat.lat;
-        return lngLat.lng, lngLat.lat
-    }
-    
-    marker.on('dragend', onDragEnd);
-
-    map.on('mousemove', function (e) {
-        document.getElementById('info').innerHTML =
-        // e.point is the x, y coordinates of the mousemove event relative
-        // to the top-left corner of the map
-        JSON.stringify(e.point) + '<br />' +
-        // e.lngLat is the longitude, latitude geographical position of the event
-        JSON.stringify(e.lngLat);
+    <script>
+        mapboxgl.accessToken = 'pk.eyJ1Ijoic3V6dWtpc3RldmVuIiwiYSI6ImNqdWpwcDhhYzFuczE0ZXAzamNkMWpvd2sifQ.PAW2yuz30KwTEL983iIN_g';
+        var coordinates = document.getElementById('coordinates');
+        var map = new mapboxgl.Map({
+        container: 'map', // container id
+        style: 'mapbox://styles/mapbox/streets-v11', // stylesheet location
+        center: [{{ latitude }}, {{ longitude }}], // starting position [lng, lat]
+        zoom: 17.5 // starting zoom
         });
-</script>
+
+        var marker = new mapboxgl.Marker({
+            draggable: true
+        })
+            .setLngLat([{{ latitude }}, {{ longitude }}])
+            .addTo(map);
+        
+        function onDragEnd() {
+            var lngLat = marker.getLngLat();
+            coordinates.style.display = 'block';
+            coordinates.innerHTML = 'Longitude: ' + lngLat.lng + '<br />Latitude: ' + lngLat.lat;
+            return lngLat.lng, lngLat.lat
+        }
+        
+        marker.on('dragend', onDragEnd);
+
+        map.on('mousemove', function (e) {
+            document.getElementById('info').innerHTML =
+            // e.point is the x, y coordinates of the mousemove event relative
+            // to the top-left corner of the map
+            JSON.stringify(e.point) + '<br />' +
+            // e.lngLat is the longitude, latitude geographical position of the event
+            JSON.stringify(e.lngLat);
+            });
+    </script>
 
 {% else %}
-<script>
-    mapboxgl.accessToken = 'pk.eyJ1Ijoic3V6dWtpc3RldmVuIiwiYSI6ImNqdWpwcDhhYzFuczE0ZXAzamNkMWpvd2sifQ.PAW2yuz30KwTEL983iIN_g';
-    var coordinates = document.getElementById('coordinates');
-    var map = new mapboxgl.Map({
-    container: 'map', // container id
-    style: 'mapbox://styles/mapbox/streets-v11', // stylesheet location
-    center: [101.629845, 3.134673], // starting position [lng, lat]
-    zoom: 17.5 // starting zoom
-    });
 
-    map.on('mousemove', function (e) {
-        document.getElementById('info').innerHTML =
-        // e.point is the x, y coordinates of the mousemove event relative
-        // to the top-left corner of the map
-        JSON.stringify(e.point) + '<br />' +
-        // e.lngLat is the longitude, latitude geographical position of the event
-        JSON.stringify(e.lngLat);
-        });
+    <script>
+        mapboxgl.accessToken = 'pk.eyJ1Ijoic3V6dWtpc3RldmVuIiwiYSI6ImNqdWpwcDhhYzFuczE0ZXAzamNkMWpvd2sifQ.PAW2yuz30KwTEL983iIN_g';
+            var coordinates = document.getElementById('coordinates');
+            var map = new mapboxgl.Map({
+                container: 'map', // container id
+                style: 'mapbox://styles/mapbox/streets-v11', // stylesheet location
+                center: [101.629845, 3.134673], // starting position [lng, lat]
+                zoom: 17.5 // starting zoom
+            });
 
-     
-/* Map: This represents the map on the page. */
-var map = new mapboxgl.Map({
-    container: "map",
-    style: "mapbox://styles/mapbox/light-v10",
-    zoom: 4.62,
-    center: [-78.4305,39.5706]
-    });
-     
-    map.on("load", function () {
-    /* Image: An image is loaded and added to the map. */
-    map.loadImage("https://i.imgur.com/MK4NUzI.png", function(error, image) {
-    if (error) throw error;
-    map.addImage("custom-marker", image);
-    /* Style layer: A style layer ties together the source and image and specifies how they are displayed on the map. */
-    map.addLayer({
-    id: "markers",
-    type: "symbol",
-    /* Source: A data source specifies the geographic coordinate where the image marker gets placed. */
-    source: {
-    type: "geojson",
-    data: {
-    type: 'FeatureCollection',
-    features: [
-    {
-    type: 'Feature',
-    properties: {},
-    geometry: {
-    type: "Point",
-    coordinates: [101.7, 3.15972]
-    }
-    }
-    ]
-    }
-    },
-    layout: {
-    "icon-image": "custom-marker",
-    }
-    });
-    });
-    });
-</script>
+            map.on('mousemove', function (e) {
+                document.getElementById('info').innerHTML =
+                    // e.point is the x, y coordinates of the mousemove event relative
+                    // to the top-left corner of the map
+                    JSON.stringify(e.point) + '<br />' +
+                    // e.lngLat is the longitude, latitude geographical position of the event
+                    JSON.stringify(e.lngLat);
+            });
+
+
+            /* Map: This represents the map on the page. */
+            var map = new mapboxgl.Map({
+                container: "map",
+                style: "mapbox://styles/mapbox/light-v10",
+                zoom: 4.62,
+                center: [-78.4305, 39.5706]
+            });
+
+            map.on("load", function () {
+                /* Image: An image is loaded and added to the map. */
+                map.loadImage("https://i.imgur.com/MK4NUzI.png", function (error, image) {
+                    if (error) throw error;
+                    map.addImage("custom-marker", image);
+                    /* Style layer: A style layer ties together the source and image and specifies how they are displayed on the map. */
+                    map.addLayer({
+                        id: "markers",
+                        type: "symbol",
+                        /* Source: A data source specifies the geographic coordinate where the image marker gets placed. */
+                        source: {
+                            type: "geojson",
+                            data: {
+                                type: 'FeatureCollection',
+                                features: [
+                                    {
+                                        type: 'Feature',
+                                        properties: {},
+                                        geometry: {
+                                            type: "Point",
+                                            coordinates: [101.7, 3.15972]
+                                        }
+                                    }
+                                ]
+                            }
+                        },
+                        layout: {
+                            "icon-image": "custom-marker",
+                        }
+                    });
+                });
+            });
+    </script>
 
 {% endif %}
 
