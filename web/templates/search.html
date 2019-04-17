@@ -1,0 +1,38 @@
+{% extends "_layout.html" %}
+
+{% block title %} Search Results {% endblock%}
+
+{% block content%}
+    <style>
+        body { margin:0; padding:0; }
+        #map { position:absolute; top:0; bottom:0; width:800px; height:800px; }
+    </style>
+
+    <form class ="mt-3" action="{{ url_for('search') }}" method="POST">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <input type="text" name="map_query" class="form-control" placeholder="Search for a location">
+        <input type="submit" class="btn btn-primary mt-3 mb-3" value="Search">
+    </form>
+
+    <script>
+        mapboxgl.accessToken = 'pk.eyJ1Ijoic3V6dWtpc3RldmVuIiwiYSI6ImNqdWpwcDhhYzFuczE0ZXAzamNkMWpvd2sifQ.PAW2yuz30KwTEL983iIN_g';
+        var map = new mapboxgl.Map({
+            container: 'map', // container id
+            style: 'mapbox://styles/mapbox/dark-v10', // stylesheet location
+            center: [101.629845, 3.134673], // starting position [lng, lat]
+            zoom: 17.5 // starting zoom
+        });
+    </script>
+
+    <h1>Place Name: {{ first['place_name'] }}</h1>
+    <h1>Place Type: {{ first['place_type'] }}</h1>
+    <h1>Relevance: {{ first['relevance'] }}</h1>
+    <h1>Properties: {{ first['properties'] }}</h1>
+    <!-- {{ first['text'] }} -->
+    <h1>Coordinates (Latitude): {{ first['center'][0] }}</h1>
+    <h1>Coordinates (Longitude): {{ first['center'][1] }}</h1>
+    
+    <!-- {{ first['geometry'] }}
+    {{ first['context'] }} -->
+
+{% endblock %}
